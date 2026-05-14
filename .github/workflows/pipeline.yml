@@ -1,0 +1,24 @@
+name: Pipeline Media de Notas
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  executar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Fazendo checkout do código
+        uses: actions/checkout@v4
+
+      - name: Configurando o ambiente Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Executando o script de média
+        run: python media.py
+
+      - name: Executando os testes automatizados
+        run: python teste.py
